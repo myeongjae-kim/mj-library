@@ -11,37 +11,43 @@
 
 /* Error Checking Macro *
  *
+ * ERROR_MSG(msg);
  * MALLOC(pointer, size);
  * CALLOC(pointer, number, size);
  * REALLOC(pointer, size);
  * FREE(pointer);
  * EIF(TRUE);
  * 		if TRUE is 0, exit program.
+ * EIN(TRUE);
+ * 		if TRUE is NULL, exit program.
  * FOPEN(fp, filepath, parameter);
  * 		if the file cannot be opened, exit program.
  */
 
+#define ERROR_MSG(msg) fprintf(stderr, "ERROR: %s\n", msg)
+#define MEM_ERR "INSUFFICIENT MEMORY\n"
+
 #define MALLOC(p,s)\
 	if( ! ((p) = malloc(s))) {\
-		fprintf(stderr, "Insufficient memory"); \
+		ERROR_MSG(MEM_ERR); \
 		exit(EXIT_FAILURE);\
 	}
 
 #define CALLOC(p,n,s)\
 	if( ! ((p) = calloc(n, s))) {\
-		fprintf(stderr, "Insufficient memory"); \
+		ERROR_MSG(MEM_ERR); \
 		exit(EXIT_FAILURE);\
  	}
 
 #define REALLOC(p,s)\
 	if( ! ((p) = realloc(s))) {\
-		fprintf(stderr, "Insufficient memory"); \
+		ERROR_MSG(MEM_ERR); \
 		exit(EXIT_FAILURE);\
 	}
 
 #define FREE(p)\
 	if( ! (p) ) {\
-		fprintf(stderr, "freeN(): The variable has NULL value. It cannot be free\n");\
+		ERROR_MSG("freeN(): The variable has NULL value. It cannot be free\n");\
 	} else {\
 		free(p);\
 		p = NULL;\
@@ -49,17 +55,17 @@
 		
 #define EIF(TRUE)\
 	if( ! (TRUE) ) {\
-		fprintf(stderr, "FALSE!! FALSE!!\n"); \
+		ERROR_MSG("FALSE FALSE!\n"); \
 		exit(EXIT_FAILURE);\
 	}
 #define EIN(TRUE)\
 	if( ! (TRUE) ) {\
-		fprintf(stderr, "Null Address!!\n"); \
+		ERROR_MSG("NULL ADDRESS\n"); \
 		exit(EXIT_FAILURE);\
 	}
 #define FOPEN(fp,path,param)\
-	if (! ( (fp) = fopen( (path), (param)))) {\
-		fprintf(stderr, "FILE OPERNING FAILURE!\n");\
+	if (! ( (fp) = fopen((path), (param)))) {\
+		ERROR_MSG("FILE OPERNING FAILURE\n");\
 		exit(EXIT_FAILURE);\
 	}
 
