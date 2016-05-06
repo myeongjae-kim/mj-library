@@ -52,6 +52,11 @@
 		fprintf(stderr, "FALSE!! FALSE!!\n"); \
 		exit(EXIT_FAILURE);\
 	}
+#define EIN(TRUE)\
+	if( ! (TRUE) ) {\
+		fprintf(stderr, "Null Address!!\n"); \
+		exit(EXIT_FAILURE);\
+	}
 #define FOPEN(fp,path,param)\
 	if (! ( (fp) = fopen( (path), (param)))) {\
 		fprintf(stderr, "FILE OPERNING FAILURE!\n");\
