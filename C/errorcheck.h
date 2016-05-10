@@ -22,6 +22,8 @@
  * 		if TRUE is NULL, exit program.
  * FOPEN(fp, filepath, parameter);
  * 		if the file cannot be opened, exit program.
+ * SWAP(x, y, temp);
+ * 		swap x and y.
  */
 
 #define ERROR_MSG(msg) fprintf(stderr, "ERROR: %s\n", msg)
@@ -68,5 +70,9 @@
 		ERROR_MSG("FILE OPERNING FAILURE\n");\
 		exit(EXIT_FAILURE);\
 	}
+#define SWAP(x,y,temp)\
+	(temp) = (x);\
+	(x) = (y);\
+	(y) = (temp);
 
 #endif /* errorcheck_h */
