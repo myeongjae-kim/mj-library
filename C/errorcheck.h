@@ -70,6 +70,6 @@
 		ERROR_MSG("FILE OPERNING FAILURE\n");\
 		exit(EXIT_FAILURE);\
 	}
-#define SWAP(x,y,temp) ((temp) = (x); (x) = (y); (y) = (temp));
+#define SWAP(x,y,temp) ((temp) = (x), (x) = (y), (y) = (temp))
 
 #endif /* errorcheck_h */
