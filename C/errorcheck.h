@@ -49,7 +49,7 @@
 
 #define FREE(p)\
 	if( ! (p) ) {\
-		ERROR_MSG("freeN(): The variable has NULL value. It cannot be free\n");\
+		ERROR_MSG("freeN(): The variable has NULL value. It cannot be free");\
 	} else {\
 		free(p);\
 		p = NULL;\
@@ -57,17 +57,17 @@
 		
 #define EIF(TRUE)\
 	if( ! (TRUE) ) {\
-		ERROR_MSG("FALSE FALSE!\n"); \
+		ERROR_MSG("FALSE FALSE!"); \
 		exit(EXIT_FAILURE);\
 	}
 #define EIN(TRUE)\
 	if( ! (TRUE) ) {\
-		ERROR_MSG("NULL ADDRESS\n"); \
+		ERROR_MSG("NULL ADDRESS"); \
 		exit(EXIT_FAILURE);\
 	}
 #define FOPEN(fp,path,param)\
 	if (! ( (fp) = fopen((path), (param)))) {\
-		ERROR_MSG("FILE OPERNING FAILURE\n");\
+		ERROR_MSG("FILE OPERNING FAILURE");\
 		exit(EXIT_FAILURE);\
 	}
 #define SWAP(x,y,temp) ((temp) = (x), (x) = (y), (y) = (temp))
