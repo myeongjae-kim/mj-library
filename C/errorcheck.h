@@ -30,46 +30,63 @@
 #define MEM_ERR "INSUFFICIENT MEMORY\n"
 
 #define MALLOC(p,s)\
-	if( ! ((p) = malloc(s))) {\
-		ERROR_MSG(MEM_ERR); \
-		exit(EXIT_FAILURE);\
-	}
+	do {\
+		if( ! ((p) = malloc(s))) {\
+			ERROR_MSG(MEM_ERR); \
+			exit(EXIT_FAILURE);\
+		}\
+	}while(0)
 
 #define CALLOC(p,n,s)\
-	if( ! ((p) = calloc(n, s))) {\
-		ERROR_MSG(MEM_ERR); \
-		exit(EXIT_FAILURE);\
- 	}
+	do {\
+		if( ! ((p) = calloc(n, s))) {\
+			ERROR_MSG(MEM_ERR); \
+			exit(EXIT_FAILURE);\
+		}\
+	}while(0)
 
 #define REALLOC(p,s)\
-	if( ! ((p) = realloc(s))) {\
-		ERROR_MSG(MEM_ERR); \
-		exit(EXIT_FAILURE);\
-	}
+	do {\
+		realloc(p,s);\
+		if( !(p)) {\
+			ERROR_MSG(MEM_ERR); \
+			exit(EXIT_FAILURE);\
+		}\
+	}while(0)
 
 #define FREE(p)\
-	if( ! (p) ) {\
-		ERROR_MSG("freeN(): The variable has NULL value. It cannot be free");\
-	} else {\
-		free(p);\
-		p = NULL;\
-	}\
+	do{\
+		if( ! (p) ) {\
+			ERROR_MSG("free(): The variable has NULL value. It cannot be free.");\
+		} else {\
+			free(p);\
+			p = NULL;\
+		}\
+	}while(0)
 		
 #define EIF(TRUE)\
-	if( ! (TRUE) ) {\
-		ERROR_MSG("FALSE FALSE!"); \
-		exit(EXIT_FAILURE);\
-	}
+	do{\
+		if( ! (TRUE) ) {\
+			ERROR_MSG("FALSE FALSE!"); \
+			exit(EXIT_FAILURE);\
+		}\
+	}while(0)
+
 #define EIN(TRUE)\
-	if( ! (TRUE) ) {\
-		ERROR_MSG("NULL ADDRESS"); \
-		exit(EXIT_FAILURE);\
-	}
+	do {\
+		if( ! (TRUE) ) {\
+			ERROR_MSG("NULL ADDRESS"); \
+			exit(EXIT_FAILURE);\
+		}\
+	}while(0)
+
 #define FOPEN(fp,path,param)\
-	if (! ( (fp) = fopen((path), (param)))) {\
-		ERROR_MSG("FILE OPERNING FAILURE");\
-		exit(EXIT_FAILURE);\
-	}
+	do{\
+		if (! ( (fp) = fopen((path), (param)))) {\
+			ERROR_MSG("FILE OPERNING FAILURE");\
+			exit(EXIT_FAILURE);\
+		}\
+	}while(0)
 #define SWAP(x,y,temp) ((temp) = (x), (x) = (y), (y) = (temp))
 
 #endif /* errorcheck_h */
