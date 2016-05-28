@@ -47,7 +47,7 @@
 
 #define REALLOC(p,s)\
 	do {\
-		realloc(p,s);\
+		p = realloc(p,s);\
 		if( !(p)) {\
 			ERROR_MSG(MEM_ERR); \
 			exit(EXIT_FAILURE);\
