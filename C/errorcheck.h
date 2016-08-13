@@ -9,6 +9,14 @@
 #define errorcheck_h
 #include <stdlib.h>
 
+#define ANSI_COLOR_RED      "\x1b[31m"
+#define ANSI_COLOR_GREEN    "\x1b[32m"
+#define ANSI_COLOR_YELLOW   "\x1b[33m"
+#define ANSI_COLOR_BLUE     "\x1b[34m"
+#define ANSI_COLOR_MAGENTA  "\x1b[35m"
+#define ANSI_COLOR_CYAN     "\x1b[36m"
+#define ANSI_COLOR_RESET    "\x1b[0m"
+
 /* Error Checking Macro *
  *
  * ERROR_MSG(msg);
@@ -24,9 +32,11 @@
  * 		if the file cannot be opened, exit program.
  * SWAP(x, y, temp);
  * 		swap x and y.
+ * ARG_CHECK(number);
+ *      if argc != number, print error message and exit program.
  */
 
-#define ERROR_MSG(msg) fprintf(stderr, "ERROR: %s\n", msg)
+#define ERROR_MSG(msg) fprintf(stderr, ANSI_COLOR_RED "\tERROR: %s" ANSI_COLOR_RESET, msg)
 #define MEM_ERR "INSUFFICIENT MEMORY\n"
 
 #define MALLOC(p,s)\
@@ -57,7 +67,7 @@
 #define FREE(p)\
 	do{\
 		if( ! (p) ) {\
-			ERROR_MSG("free(): The variable has NULL value. It cannot be free.");\
+			ERROR_MSG("free(): The variable has NULL value. It cannot be free.\n");\
 		} else {\
 			free(p);\
 			p = NULL;\
@@ -67,7 +77,7 @@
 #define EIF(TRUE)\
 	do{\
 		if( ! (TRUE) ) {\
-			ERROR_MSG("FALSE FALSE!"); \
+			ERROR_MSG("FALSE FALSE!\n"); \
 			exit(EXIT_FAILURE);\
 		}\
 	}while(0)
@@ -75,7 +85,7 @@
 #define EIN(TRUE)\
 	do {\
 		if( ! (TRUE) ) {\
-			ERROR_MSG("NULL ADDRESS"); \
+			ERROR_MSG("NULL ADDRESS\n"); \
 			exit(EXIT_FAILURE);\
 		}\
 	}while(0)
@@ -83,10 +93,19 @@
 #define FOPEN(fp,path,param)\
 	do{\
 		if (! ( (fp) = fopen((path), (param)))) {\
-			ERROR_MSG("FILE OPERNING FAILURE");\
+			ERROR_MSG("FILE OPERNING FAILURE\n");\
 			exit(EXIT_FAILURE);\
 		}\
 	}while(0)
 #define SWAP(x,y,temp) ((temp) = (x), (x) = (y), (y) = (temp))
 
+#define ARG_CHECK(number)\
+    do{\
+        if( (argc) != (number) )\
+        {\
+            ERROR_MSG("CHECK COMMAND LINE ARGUMENTS.\n");\
+            ERROR_MSG("ARGUMENT COUNTER SHOULD BE "); fprintf(stderr, ANSI_COLOR_YELLOW "%d.\n"ANSI_COLOR_RESET, number);\
+            exit(EXIT_FAILURE);\
+        }\
+    }while(0)
 #endif /* errorcheck_h */
