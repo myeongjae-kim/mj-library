@@ -17,15 +17,15 @@
  * REALLOC(pointer, size);
  * FREE(pointer);
  * EIF(TRUE);
- * 		if TRUE is 0, exit program.
+ *          if TRUE is 0, exit program.
  * EIN(TRUE);
- * 		if TRUE is NULL, exit program.
+ *          if TRUE is NULL, exit program.
  * FOPEN(fp, filepath, parameter);
- * 		if the file cannot be opened, exit program.
+ *          if the file cannot be opened, exit program.
  * SWAP(x, y, temp);
- * 		swap x and y.
+ *          swap x and y.
  * ARG_CHECK(number);
- *      if argc != number, print error message and exit program.
+ *          if argc != number, print error message and exit program.
  */
 
 #define ANSI_COLOR_RED      "\x1b[31m"
@@ -40,63 +40,63 @@
 #define MEM_ERR "INSUFFICIENT MEMORY\n"
 
 #define MALLOC(p,s)\
-	do {\
-		if( ! ((p) = malloc(s))) {\
-			ERROR_MSG(MEM_ERR); \
-			exit(EXIT_FAILURE);\
-		}\
-	}while(0)
+    do {\
+        if( ! ((p) = malloc(s))) {\
+            ERROR_MSG(MEM_ERR); \
+            exit(EXIT_FAILURE);\
+        }\
+    }while(0)
 
 #define CALLOC(p,n,s)\
-	do {\
-		if( ! ((p) = calloc(n, s))) {\
-			ERROR_MSG(MEM_ERR); \
-			exit(EXIT_FAILURE);\
-		}\
-	}while(0)
+    do {\
+        if( ! ((p) = calloc(n, s))) {\
+            ERROR_MSG(MEM_ERR); \
+            exit(EXIT_FAILURE);\
+        }\
+    }while(0)
 
 #define REALLOC(p,s)\
-	do {\
-		p = realloc(p,s);\
-		if( !(p)) {\
-			ERROR_MSG(MEM_ERR); \
-			exit(EXIT_FAILURE);\
-		}\
-	}while(0)
+    do {\
+        p = realloc(p,s);\
+        if( !(p)) {\
+            ERROR_MSG(MEM_ERR); \
+            exit(EXIT_FAILURE);\
+        }\
+    }while(0)
 
 #define FREE(p)\
-	do{\
-		if( ! (p) ) {\
-			ERROR_MSG("free(): The variable has NULL value. It cannot be free.\n");\
-		} else {\
-			free(p);\
-			p = NULL;\
-		}\
-	}while(0)
-		
+    do{\
+        if( ! (p) ) {\
+            ERROR_MSG("free(): The variable has NULL value. It cannot be free.\n");\
+        } else {\
+            free(p);\
+            p = NULL;\
+        }\
+    }while(0)
+        
 #define EIF(TRUE)\
-	do{\
-		if( ! (TRUE) ) {\
-			ERROR_MSG("FALSE FALSE!\n"); \
-			exit(EXIT_FAILURE);\
-		}\
-	}while(0)
+    do{\
+        if( ! (TRUE) ) {\
+            ERROR_MSG("FALSE FALSE!\n"); \
+            exit(EXIT_FAILURE);\
+        }\
+    }while(0)
 
 #define EIN(TRUE)\
-	do {\
-		if( ! (TRUE) ) {\
-			ERROR_MSG("NULL ADDRESS\n"); \
-			exit(EXIT_FAILURE);\
-		}\
-	}while(0)
+    do {\
+        if( ! (TRUE) ) {\
+            ERROR_MSG("NULL ADDRESS\n"); \
+            exit(EXIT_FAILURE);\
+        }\
+    }while(0)
 
 #define FOPEN(fp,path,param)\
-	do{\
-		if (! ( (fp) = fopen((path), (param)))) {\
-			ERROR_MSG("FILE OPERNING FAILURE\n");\
-			exit(EXIT_FAILURE);\
-		}\
-	}while(0)
+    do{\
+        if (! ( (fp) = fopen((path), (param)))) {\
+            ERROR_MSG("FILE OPERNING FAILURE\n");\
+            exit(EXIT_FAILURE);\
+        }\
+    }while(0)
 #define SWAP(x,y,temp) ((temp) = (x), (x) = (y), (y) = (temp))
 
 #define ARG_CHECK(number)\
