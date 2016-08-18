@@ -26,6 +26,8 @@
  *          swap x and y.
  * ARG_CHECK(number);
  *          if argc != number, print error message and exit program.
+ * FLUSH();
+ *          flush stdin.
  */
 
 #define ANSI_COLOR_RED      "\x1b[31m"
@@ -36,7 +38,7 @@
 #define ANSI_COLOR_CYAN     "\x1b[36m"
 #define ANSI_COLOR_RESET    "\x1b[0m"
 
-#define ERROR_MSG(msg) fprintf(stderr, ANSI_COLOR_RED "\tERROR: %s" ANSI_COLOR_RESET, msg)
+#define ERROR_MSG(msg) fprintf(stderr, ANSI_COLOR_RED "\tERROR: "ANSI_COLOR_YELLOW"%s" ANSI_COLOR_RESET, msg)
 #define MEM_ERR "INSUFFICIENT MEMORY\n"
 
 #define MALLOC(p,s)\
@@ -104,8 +106,14 @@
         if( (argc) != (number) )\
         {\
             ERROR_MSG("CHECK COMMAND LINE ARGUMENTS.\n");\
-            ERROR_MSG("ARGUMENT COUNTER SHOULD BE "); fprintf(stderr, ANSI_COLOR_YELLOW "%d.\n"ANSI_COLOR_RESET, number);\
+            ERROR_MSG("ARGUMENT COUNTER SHOULD BE "); fprintf(stderr, ANSI_COLOR_CYAN "%d.\n"ANSI_COLOR_RESET, number);\
             exit(EXIT_FAILURE);\
         }\
+    }while(0)
+
+#define FLUSH()\
+    do{\
+        char CBUFF_FOR_FLUSHING = 0;\
+        while((CBUFF_FOR_FLUSHING = getchar()) != '\n' && c != EOF);\
     }while(0)
 #endif /* errorcheck_h */
