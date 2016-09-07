@@ -1,6 +1,15 @@
+//
+//  mjUtil.h
+//
+//  Created by Kim, Myeong-jae on 4/29/16.
+//  Copyright © 2016 KimMyeong-jae. All rights reserved.
+//
+
 #ifndef mjUtil_h
 #define mjUtil_h
 #include <cstdlib>
+#include <vector>
+using namespace std;
 
 /* Utility Macro *
  *
@@ -22,7 +31,7 @@
  * VI
  *          typedef vector<int> VI;
  * VII
- *          typedef vector<VI> VVI; 
+ *          typedef vector<vi> VVI; 
  * II       
  *          typedef pair<int,int> II;
  *          e.g.) vector<II>, vector< pair<double,II> >
@@ -102,5 +111,16 @@
         char CBUFF_FOR_FLUSHING = 0;\
         while((CBUFF_FOR_FLUSHING = getchar()) != '\n' && c != EOF);\
     }while(0)
+
+/* TopCoder.com */
+#define ALL(c) c.begin(), c.end()
+typedef vector<int> VI; 
+typedef vector<VI> VVI; 
+typedef pair<int,int> II; 
+#define SZ(a) int((a).size()) 
+#define PB push_back 
+#define TR(c,i) for(typeof((c).begin() i = (c).begin(); i != (c).end(); i++) 
+#define PRESENT(c,x) ((c).find(x) != (c).end()) 
+#define CPRESENT(c,x) (find(ALL(c),x) != (c).end()) 
 
 #endif /* mjUtil_h */
