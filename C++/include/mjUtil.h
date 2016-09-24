@@ -4,6 +4,8 @@
 
 /* Utility Macro *
  *
+ * ANSI color supported.
+ *
  * ERROR_MSG(msg);
  * FREE(pointer);
  * EIF(TRUE);
@@ -17,29 +19,6 @@
  * FLUSH();
  *          flush stdin.
  *
- ** Below is TopCoder.com Macro **
- *
- * VI
- *          typedef vector<int> VI;
- * VII
- *          typedef vector<VI> VVI; 
- * II       
- *          typedef pair<int,int> II;
- *          e.g.) vector<II>, vector< pair<double,II> >
- * ALL(c)
- *          c.begin(), c.end()
- * SZ(a)
- *          int((a).size())
- * PB
- *          push_back
- * TR(c, i)
- *          tr(v, it) { 
- *               r += (*it)*(*it); // example
- *          } 
- * PRESENT(c,x) 
- *          ((c).find(x) != (c).end())
- * CPRESENT(c,x)
- *          (find(ALL(c),x) != (c).end())
  */
 
 #define ANSI_COLOR_RED      "\x1b[31m"
@@ -100,7 +79,7 @@
 #define FLUSH()\
     do{\
         char CBUFF_FOR_FLUSHING = 0;\
-        while((CBUFF_FOR_FLUSHING = getchar()) != '\n' && c != EOF);\
+        while((CBUFF_FOR_FLUSHING = getchar()) != '\n' && CBUFF_FOR_FLUSHING != EOF);\
     }while(0)
 
 #endif /* mjUtil_h */
