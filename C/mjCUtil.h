@@ -49,7 +49,7 @@ typedef enum mjBool { false, true } bool; // this is an alternative way for incl
 
 #define MALLOC( p, s )\
     do {\
-        if ( ! ( (p) = malloc(s) ) ) {\
+        if ( ( (p) = malloc(s) ) == (NULL) ) {\
             ERROR_MSG( MEM_ERR ); \
             exit( EXIT_FAILURE );\
         }\
@@ -57,7 +57,7 @@ typedef enum mjBool { false, true } bool; // this is an alternative way for incl
 
 #define CALLOC( p, n, s )\
     do {\
-        if ( ! ( (p) = calloc(n, s) ) ) {\
+        if ( ( (p) = calloc(n, s) ) == (NULL) ) {\
             ERROR_MSG( MEM_ERR ); \
             exit( EXIT_FAILURE );\
         }\
@@ -66,7 +66,7 @@ typedef enum mjBool { false, true } bool; // this is an alternative way for incl
 #define REALLOC( p, s )\
     do {\
         p = realloc( p, s );\
-        if ( !(p) ) {\
+        if ( (p) == (NULL) ) {\
             ERROR_MSG( MEM_ERR ); \
             exit( EXIT_FAILURE );\
         }\
@@ -74,7 +74,7 @@ typedef enum mjBool { false, true } bool; // this is an alternative way for incl
 
 #define FREE( p )\
     do {\
-        if ( ! (p) ) {\
+        if ( (p) == (NULL) ) {\
             ERROR_MSG( "free(): The variable has NULL value. It cannot be free.\n" );\
         } else {\
             free( p );\
@@ -84,7 +84,7 @@ typedef enum mjBool { false, true } bool; // this is an alternative way for incl
         
 #define EIF( variableIsTrue )\
     do {\
-        if( ! (variableIsTrue) ) {\
+        if( (variableIsTrue) == (false) ) {\
             ERROR_MSG( "FALSE FALSE!\n" ); \
             exit( EXIT_FAILURE );\
         }\
@@ -92,7 +92,7 @@ typedef enum mjBool { false, true } bool; // this is an alternative way for incl
 
 #define EIN( variableHasValue )\
     do {\
-        if( ! (variableHasValue) ) {\
+        if( (variableHasValue) == (NULL) ) {\
             ERROR_MSG( "NULL ADDRESS\n" ); \
             exit( EXIT_FAILURE );\
         }\
@@ -100,7 +100,7 @@ typedef enum mjBool { false, true } bool; // this is an alternative way for incl
 
 #define FOPEN( fp, path, param )\
     do{\
-        if (! ( (fp) = fopen( (path), (param) ) ) ) {\
+        if ( ( (fp) = fopen( (path), (param) ) )  == (NULL) )  {\
             ERROR_MSG( "FILE OPERNING FAILURE\n" );\
             exit( EXIT_FAILURE );\
         }\
@@ -120,7 +120,7 @@ typedef enum mjBool { false, true } bool; // this is an alternative way for incl
 
 #define FLUSH()\
     do{\
-        char CBUFF_FOR_FLUSHING = 0;\
-        while((CBUFF_FOR_FLUSHING = getchar()) != '\n' && c != EOF);\
+        char CBUFF_FOR_FLUSHING = '\0';\
+        while ( ( ( (CBUFF_FOR_FLUSHING) = getchar() ) != ('\n') ) && ( (c) != (EOF) ) );\
     } while ( false )
 #endif /* mjCUtil_h */
