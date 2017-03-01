@@ -104,6 +104,11 @@ snippet ret
 ## Loops
 # for
 snippet for
+	for (${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
+		${4}
+	}
+# fori
+snippet fori
 	for (int ${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
 		${4}
 	}
@@ -234,3 +239,5 @@ snippet {
 	{
 		${0}
 	
+snippet incl
+	#include "${0:mjUtil}.h"
