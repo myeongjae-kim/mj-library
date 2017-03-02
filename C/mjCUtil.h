@@ -17,6 +17,8 @@ typedef enum mjBool { false, true } bool; // this is an alternative way for incl
 
 /* Error Checking Macro *
  *
+ * DoNothing();
+ *          Literally do nothing. It is used in empty while loop.
  * ERROR_MSG( msg );
  * MALLOC( pointer, size );
  * CALLOC( pointer, number, size );
@@ -43,6 +45,8 @@ typedef enum mjBool { false, true } bool; // this is an alternative way for incl
 #define ANSI_COLOR_MAGENTA  "\x1b[35m"
 #define ANSI_COLOR_CYAN     "\x1b[36m"
 #define ANSI_COLOR_RESET    "\x1b[0m"
+
+#define DoNothing()
 
 #define ERROR_MSG( msg ) fprintf( stderr, ANSI_COLOR_RED "\tERROR: "ANSI_COLOR_YELLOW"%s" ANSI_COLOR_RESET, msg )
 #define MEM_ERR "INSUFFICIENT MEMORY\n"
