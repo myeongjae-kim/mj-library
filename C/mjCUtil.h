@@ -48,7 +48,7 @@ typedef enum mjBool { false, true } bool; // this is an alternative way for incl
 
 #define DoNothing()
 
-#define ERROR_MSG( msg ) fprintf( stderr, ANSI_COLOR_RED "\tERROR: "ANSI_COLOR_YELLOW"%s" ANSI_COLOR_RESET, msg )
+#define ERROR_MSG( msg ) fprintf( stderr, ANSI_COLOR_RED "\tERROR: "ANSI_COLOR_YELLOW"%s" ANSI_COLOR_RESET, ( msg ) )
 #define MEM_ERR "INSUFFICIENT MEMORY\n"
 
 #define MALLOC( p, s )\
@@ -125,6 +125,6 @@ typedef enum mjBool { false, true } bool; // this is an alternative way for incl
 #define FLUSH()\
     do{\
         char CBUFF_FOR_FLUSHING = '\0';\
-        while ( ( ( (CBUFF_FOR_FLUSHING) = getchar() ) != ('\n') ) && ( (c) != (EOF) ) );\
+        while ( ( ( (CBUFF_FOR_FLUSHING) = getchar() ) != ('\n') ) && ( (CBUFF_FOR_FLUSHING) != (EOF) ) );\
     } while ( false )
 #endif /* mjCUtil_h */
