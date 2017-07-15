@@ -1,16 +1,16 @@
 # Compiler and Compile options.
-CC = g++
-CXXFLAGS = -g -Wall -Wextra -Wpedantic -std=c++11
+C = gcc
+CFLAGS = -g -Wall -Wextra -Wpedantic -std=c11
 
 # Macros specifying path for compile.
-SRCS := $(wildcard src/*.cc)
-OBJS := $(SRCS:.cc=.o)
+SRCS := $(wildcard src/*.c)
+OBJS := $(SRCS:.c=.o)
 BIN = ./bin/
 INC = ./include/
-LIB = ./lib/ -lpthread
+LIB = ./lib/
 
 # Pre-Processor.
-CPPFLAGS += -I$(INC)
+CFLAGS += -I$(INC)
 
 # Compile command.
 TARGET = a.out
